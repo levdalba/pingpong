@@ -23,10 +23,10 @@ screen.onkey(r_paddle.up, "Up")
 screen.onkey(r_paddle.down, "Down")
 screen.onkey(l_paddle.up, "w")
 screen.onkey(l_paddle.down, "s")
-
+x = 0.05
 game_is_on = True
 while game_is_on:
-    time.sleep(0.05)
+    time.sleep(x)
     screen.update()
     ball.move()
 
@@ -40,13 +40,16 @@ while game_is_on:
         and ball.xcor() < -320
     ):
         ball.bounce_x()
+        x *= 0.9
 
     if ball.xcor() > 380:
         ball.reset_position()
         score.l_point()
+        x = 0.05
 
     if ball.xcor() < -380:
         ball.reset_position()
         score.r_point()
+        x = 0.05
 
 screen.exitonclick()
